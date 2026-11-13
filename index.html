@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SPEEX MODER — ключи и защита скриптов</title><link rel="stylesheet" href="/style.css"></head>
+<body><div class="wrap">
+<nav><div class="logo">SPEEX <b>MODER</b></div>
+<div><a href="/keys-free">Бесплатные ключи</a><a id="dc" href="#">Discord</a></div></nav>
+
+<section class="hero">
+<h1>SPEEX MODER</h1>
+<p>Система ключей, whitelist и HWID-привязки для ваших скриптов. Управление прямо из Discord.</p>
+<a class="btn" href="/keys-free">Получить бесплатный ключ</a>
+<a class="btn ghost" id="dc2" href="#">Войти в Discord</a>
+</section>
+
+<section class="grid">
+<div class="card"><h3>🔑 Ключи</h3><p>Бесплатные и премиум-ключи со сроком действия.</p></div>
+<div class="card"><h3>🛡️ HWID</h3><p>Привязка ключа к устройству и сброс в один клик.</p></div>
+<div class="card"><h3>🤖 Discord-бот</h3><p>/whitelist, /panel, /generatekey, /getrole, /generatekeyrole.</p></div>
+<div class="card"><h3>⚡ API</h3><p>POST /api/verify — проверка ключа из вашего лоадера.</p></div>
+</section>
+<footer>© SPEEX MODER</footer>
+</div>
+<script>
+fetch('/api/config').then(r=>r.json()).then(c=>{dc.href=c.invite;dc2.href=c.invite});
+</script></body></html>

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Бесплатный ключ — SPEEX MODER</title><link rel="stylesheet" href="/style.css"></head>
+<body><div class="wrap">
+<nav><a class="logo" href="/" style="color:inherit;text-decoration:none;margin:0">SPEEX <b>MODER</b></a><div><a href="/">Главная</a></div></nav>
+<div class="center">
+<h1>Бесплатный ключ</h1>
+<p style="color:var(--mut)" id="info"></p>
+<button class="btn" id="get">Получить ключ</button>
+<div class="keybox" id="box" style="display:none"></div>
+<p id="exp" style="color:var(--mut)"></p>
+<button class="btn ghost" id="copy" style="display:none;margin:0">Скопировать</button>
+<p id="err" style="color:#c1121f"></p>
+</div></div>
+<script>
+const $=id=>document.getElementById(id);
+fetch('/api/config').then(r=>r.json()).then(c=>$('info').textContent=`Ключ действует ${c.hours} ч. Один ключ в ${c.hours} ч.`);
+$('get').onclick=async()=>{
+  $('err').textContent='';
+  const r=await fetch('/api/free-key',{method:'POST'});const d=await r.json();
+  if(!r.ok){$('err').textContent=d.error;return}
+  $('box').style.display='block';$('box').textContent=d.key;
+  $('exp').textContent='Истекает: '+new Date(d.expiresAt).toLocaleString();
+  $('copy').style.display='inline-block';
+};
+$('copy').onclick=()=>{navigator.clipboard.writeText($('box').textContent);$('copy').textContent='Скопировано ✓'};
+</script></body></html>
